@@ -61,9 +61,7 @@ app.post('/api/shorturl', async (req, res) => {
       return res.send(message);
     }
 
-    //if(!isInDB(formURL)){
     await shortener.create({link : formURL});
-    //}
 
     return await shortener.findOne({link : formURL}, (err, data) => {
       err ? console.log(err) :  res.send({original_url: data.link, short_url: data.shortenedLink});
